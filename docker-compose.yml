@@ -2,11 +2,12 @@ services:
   web:
     build: .
     ports:
-      - "5000:5000"
-    env_file:
-      - .env
+      - "80:5000"
     depends_on:
       - db
+    environment:
+      - SECRET_KEY=supersecretkey
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/flask_db
     volumes:
       - .:/app
     networks:
